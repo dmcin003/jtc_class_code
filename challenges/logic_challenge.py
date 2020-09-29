@@ -84,6 +84,7 @@ print("Challenge 3.2.2: Taking user input")
 name = input("What is your name? ")
 # TODO: Write code to ask the client his savings and save it to another variable.
 savings = input("What is your savings amount? Please enter the numerical amount. example: 700 or 700.50: ")
+savings_is_float = savings.replace(".","",1).isdigit()
 
 # TODO: Write code to ask the client the stock he is interested in and save it to another variable, as shown below.
 stock = input("Which stock are you interested in? Type 'amzn' for Amazon, 'aapl' for Apple, 'fb' for Facebook, 'goog' for Google and 'msft' for Microsoft.")
@@ -91,8 +92,8 @@ print()
 
 print("Challenge 3.2.3: Perform user-specific calculations")
 # TODO: You have all 3 user inputs stores in variables. Based on that, write conditional (if-elif-else) statements to find out the number of stocks of the company that can be purchased with the savings amount.
-#checks to make sure the user enters a number that is greater than or equal to 0.
-if savings.isdigit() == True:
+#checks to make sure the user enters a number and not anything else.
+if savings.isdigit() == True or savings_is_float:
 	#convert savings entered into a float to use in calculations
 	float_savings = float(savings)
 
@@ -131,7 +132,7 @@ print()
 
 print("Challenge 3.2.4: Output for the user the result")
 # checks if the user entered the savings and  the stock correctly 
-if savings.isdigit() == True and (stock=="amzn" or stock=="aapl" or stock=="fb" or stock=="goog" or stock=="msft"):
+if (savings.isdigit() == True or savings_is_float) and (stock=="amzn" or stock=="aapl" or stock=="fb" or stock=="goog" or stock=="msft"):
 	# TODO: COnce you have calculated the number of stocks that can be purchased, print the result for the client. Result should be in a format like this:
 	# Alex has $5000 in savings and he can buy 50 shares of Apple at the current price of $100.
 	print(f"{name} has ${savings} in savings and can buy {shares} shares of {stock_choosen} at the current price of {stock_price}")
